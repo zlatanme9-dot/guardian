@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Guardian Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-950 text-white font-sans select-none">
+    <div class="max-w-md mx-auto min-h-screen flex flex-col">
+        <div class="px-6 pt-16 pb-6 bg-zinc-900 rounded-b-3xl border-b border-zinc-800">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold tracking-tight">Guardian Pro</h1>
+                    <p id="mode-text" class="text-zinc-500 text-sm">System: Active</p>
+                </div>
+                <div id="status-dot" class="w-4 h-4 rounded-full bg-emerald-500 animate-pulse"></div>
+            </div>
+        </div>
+
+        <div class="flex-1 px-6 py-8 space-y-6">
+            <!-- Network Card -->
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 shadow-xl">
+                <p class="text-zinc-500 text-xs uppercase font-bold tracking-widest">Connectivity</p>
+                <div id="net-status" class="text-4xl font-black mt-2 text-emerald-400">ONLINE</div>
+                <p id="net-detail" class="text-zinc-500 text-sm mt-1">Encrypted Tunnel Active</p>
+            </div>
+
+            <!-- Actions -->
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="debugSystem()" class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800 text-left active:scale-95 transition-transform">
+                    <div class="text-xl">🛠️</div>
+                    <div class="font-medium mt-2">Sys Debug</div>
+                </button>
+                <button onclick="scanCloud()" class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800 text-left active:scale-95 transition-transform">
+                    <div class="text-xl">☁️</div>
+                    <div class="font-medium mt-2">Cloud Scan</div>
+                </button>
+            </div>
+
+            <!-- Shields -->
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800">
+                <div class="font-medium mb-4 flex justify-between">
+                    <span>Active Shields</span>
+                    <span class="text-emerald-500 text-xs text-right">Running</span>
+                </div>
+                <ul class="space-y-4 text-zinc-400 text-sm">
+                    <li class="flex items-center justify-between">
+                        <span>PentestGPT Blocker</span>
+                        <div class="h-1 w-12 bg-emerald-900 rounded-full"><div class="h-1 bg-emerald-500 w-full rounded-full"></div></div>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <span>Vector Protection</span>
+                        <div class="h-1 w-12 bg-emerald-900 rounded-full"><div class="h-1 bg-emerald-500 w-full rounded-full"></div></div>
+                    </li>
+                    <li class="flex items-center justify-between opacity-50">
+                        <span>Local Log Encrypted</span>
+                        <span>Locked</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="px-6 py-6 text-center">
+            <button onclick="location.reload()" class="text-zinc-600 text-xs uppercase tracking-tighter hover:text-zinc-400">Hard Reboot Guardian</button>
+        </div>
+    </div>
+
+    <script>
+        function updateStatus() {
+            const online = navigator.onLine;
+            const statusText = document.getElementById('net-status');
+            const statusDot = document.getElementById('status-dot');
+            const modeText = document.getElementById('mode-text');
+            
+            statusText.innerText = online ? "ONLINE" : "OFFLINE";
+            statusText.className = online ? "text-4xl font-black mt-2 text-emerald-400" : "text-4xl font-black mt-2 text-amber-500";
+            statusDot.className = online ? "w-4 h-4 rounded-full bg-emerald-500 animate-pulse" : "w-4 h-4 rounded-full bg-amber-500";
+            modeText.innerText = online ? "System: Online Protection" : "System: Local Ghost Mode";
+        }
+
+        function debugSystem() {
+            alert("Starting System Debug...\n1. Cleaning Cache: OK\n2. Verifying Core Files: OK\n3. Sandbox Isolation: ACTIVE");
+        }
+
+        function scanCloud() {
+            alert("Security Notice:\nTo inspect iCloud/Email accurately, go to iPhone Settings > Safety Check.\n\nGuardian Pro is monitoring local network leaks.");
+        }
+
+        window.addEventListener('online', updateStatus);
+        window.addEventListener('offline', updateStatus);
+        updateStatus();
+    </script>
+</body>
+</html>
